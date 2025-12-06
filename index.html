@@ -14,19 +14,17 @@
             --card-bg: #0b0b0b;
         }
 
-        * {
+        * , *::before, *::after {
             box-sizing: border-box;
-            scroll-behavior: smooth;
         }
 
-       body {
-    margin: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: radial-gradient(circle at top, #051b0b 0, #000 45%, #000 100%);
-    color: var(--text-light);
-    overflow-x: hidden;  /* 🔒 prevents left–right scrolling */
-}
-
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #051b0b 0, #000 45%, #000 100%);
+            color: var(--text-light);
+            overflow-x: hidden; /* 🔒 no left–right scroll */
+        }
 
         /* NAVBAR */
         header {
@@ -108,68 +106,71 @@
         }
 
         .nav-cta {
-            margin-left: 2rem;
-            padding: 0.55rem 1.2rem;
+            margin-left: 1.8rem;
+            padding: 0.45rem 1.1rem;
             border-radius: 999px;
             border: none;
-            background: linear-gradient(135deg, var(--gold), var(--green));
-            color: #000;
-            font-weight: 700;
+            background: linear-gradient(90deg, var(--gold), #1ddf55);
+            color: #07210e;
+            font-weight: 600;
             font-size: 0.9rem;
             cursor: pointer;
             box-shadow: 0 0 18px rgba(0, 177, 64, 0.45);
         }
 
-       .nav-toggle {
-    display: none;
-    background: none;
-    border: 1px solid #1f4f2c;
-    color: #fff;
-    border-radius: 6px;
-    padding: 0.3rem 0.5rem;
-}
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 1px solid #1f4f2c;
+            color: #fff;
+            border-radius: 6px;
+            padding: 0.3rem 0.5rem;
+        }
 
-/* MOBILE NAV */
-@media (max-width: 768px) {
-    header nav {
-        position: absolute;
-        top: 64px;
-        right: 1rem;
-        background: #000;
-        padding: 1rem 1.2rem;
-        border-left: 1px solid #0e3c17;
-        border-bottom: 1px solid #0e3c17;
-        border-radius: 0 0 0 12px;
-        width: 75%;
-        max-width: 320px;
-        display: none;  /* hidden by default, shown when Menu is tapped (JS sets display:block) */
-    }
+        /* MOBILE NAV LAYOUT */
+        @media (max-width: 768px) {
+            header nav {
+                position: absolute;
+                top: 64px;
+                right: 1rem;
+                background: #000;
+                padding: 1rem 1.2rem;
+                border-left: 1px solid #0e3c17;
+                border-bottom: 1px solid #0e3c17;
+                border-radius: 0 0 0 12px;
+                width: 75%;
+                max-width: 320px;
+                display: none; /* JS will toggle to block */
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
 
-    header nav a,
-    header nav .nav-cta {
-        display: block;
-        width: 100%;
-        text-align: left;
-        margin: 0.35rem 0;
-    }
+            header nav a,
+            header nav .nav-cta {
+                display: block;
+                width: 100%;
+                text-align: left;
+                margin: 0.25rem 0;
+            }
 
-    .nav-toggle {
-        display: block;
-    }
-}
+            .nav-toggle {
+                display: block;
+            }
 
+            nav a::after {
+                bottom: -2px;
+            }
+        }
 
-        /* HERO */
-        /* Full-width hero layout with no right column */
-.hero {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 3.5rem 1.5rem 3rem;
-    display: block;
-}
+        /* HERO LAYOUT: single-column */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3.5rem 1.5rem 3rem;
+            display: block;
+        }
 
-
-        
         .hero-kicker {
             text-transform: uppercase;
             letter-spacing: 0.15em;
@@ -182,62 +183,62 @@
 
         .hero-kicker::before {
             content: "";
-            width: 32px;
+            width: 40px;
             height: 1px;
-            background: linear-gradient(90deg, var(--gold), var(--green));
+            background: #b6ffc7;
         }
 
-        .hero h1 {
-            font-size: clamp(2.1rem, 3vw + 1rem, 3.1rem);
-            margin: 0.75rem 0 0.75rem;
+        h1 {
+            font-size: clamp(2.3rem, 4vw, 3.1rem);
+            margin: 1.3rem 0 0.8rem;
+            line-height: 1.1;
         }
 
-        .hero h1 span {
-            background: linear-gradient(120deg, var(--gold), #ffffff, var(--green));
-            -webkit-background-clip: text;
-            color: transparent;
+        h1 span {
+            color: #b6ffc7;
         }
 
         .hero-sub {
+            max-width: 540px;
+            color: #d2e8d9;
             font-size: 0.98rem;
-            color: #d8d8d8;
-            max-width: 32rem;
-            line-height: 1.7;
         }
 
         .hero-actions {
-            margin-top: 1.5rem;
             display: flex;
             flex-wrap: wrap;
             gap: 0.9rem;
-        }
-
-        .btn-primary,
-        .btn-outline {
-            border-radius: 999px;
-            padding: 0.85rem 1.6rem;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
+            margin-top: 1.6rem;
+            align-items: center;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--gold), var(--green));
-            color: #000;
-            box-shadow: 0 0 26px rgba(0, 177, 64, 0.58);
+            border-radius: 999px;
+            padding: 0.75rem 1.8rem;
+            border: none;
+            background: radial-gradient(circle at 0% 0%, #f4d03f, #00b140);
+            color: #031106;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
         }
 
         .btn-outline {
+            border-radius: 999px;
+            padding: 0.72rem 1.7rem;
+            border: 1px solid #1f5b33;
             background: transparent;
-            border: 1px solid #1f4f2c;
-            color: #e6ffe9;
+            color: #d6f5df;
+            font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
         }
 
         .hero-footnote {
-            margin-top: 0.9rem;
-            font-size: 0.8rem;
-            color: #b0b0b0;
+            margin-top: 0.7rem;
+            font-size: 0.85rem;
+            color: #b9d8c1;
         }
 
         .hero-stats {
@@ -258,97 +259,27 @@
         .stat-number {
             font-size: 1.4rem;
             font-weight: 700;
-            color: var(--gold);
         }
 
         .stat-label {
             font-size: 0.78rem;
-            color: #d0ffd7;
+            color: #b8d8c2;
+            margin-top: 0.25rem;
         }
 
-        /* HERO RIGHT */
-        .hero-card {
-            background: radial-gradient(circle at 10% 0, rgba(0, 177, 64, 0.2), #050505);
-            border-radius: 18px;
-            border: 1px solid #0b3d19;
-            padding: 1.4rem 1.6rem;
-            box-shadow: 0 26px 60px rgba(0, 0, 0, 0.85);
+        @media (max-width: 600px) {
+            .hero {
+                padding: 2.5rem 1.2rem 2.6rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+            }
         }
 
-        .impact-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.45rem;
-            padding: 0.28rem 0.8rem;
-            border-radius: 999px;
-            background: rgba(0, 177, 64, 0.12);
-            border: 1px solid rgba(0, 177, 64, 0.4);
-            font-size: 0.75rem;
-            margin-bottom: 0.8rem;
-        }
+        /* SECTION: PROGRAMS, IMPACT, ETC. */
 
-        .impact-pill span.icon {
-            width: 18px;
-            height: 18px;
-            border-radius: 999px;
-            background: radial-gradient(circle at 30% 0, var(--gold), var(--green-dark));
-        }
-
-        .hero-meter {
-            margin: 1.2rem 0;
-        }
-
-        .meter-label {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            color: #d0ffd7;
-            margin-bottom: 0.35rem;
-        }
-
-        .meter-track {
-            width: 100%;
-            height: 10px;
-            border-radius: 999px;
-            background: linear-gradient(90deg, #05240d, #020202);
-            overflow: hidden;
-        }
-
-        .meter-fill {
-            height: 100%;
-            width: 62%;
-            background: linear-gradient(90deg, var(--gold), var(--green));
-            box-shadow: 0 0 20px rgba(0, 177, 64, 0.7);
-        }
-
-        .tiers {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 0.7rem;
-            margin-top: 1rem;
-        }
-
-        .tier {
-            padding: 0.85rem 0.9rem;
-            border-radius: 12px;
-            background: rgba(0, 0, 0, 0.65);
-            border: 1px solid #09401b;
-            font-size: 0.8rem;
-        }
-
-        .tier-amount {
-            font-weight: 700;
-            margin-bottom: 0.15rem;
-            color: var(--gold);
-        }
-
-        .secure-note {
-            margin-top: 0.9rem;
-            font-size: 0.72rem;
-            color: #a6a6a6;
-        }
-
-        /* SECTION WRAPPER */
         .section {
             max-width: 1200px;
             margin: 0 auto;
@@ -363,15 +294,16 @@
             margin-bottom: 1.7rem;
         }
 
-        .section-title {
-            font-size: 1.6rem;
-        }
-
         .section-kicker {
             text-transform: uppercase;
-            letter-spacing: 0.18em;
+            letter-spacing: 0.15em;
             font-size: 0.7rem;
             color: #b6ffc7;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            margin: 0.4rem 0 0;
         }
 
         .section-description {
@@ -387,263 +319,259 @@
             }
         }
 
-        /* PROGRAMS */
-        .program-grid {
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .pill {
+            padding: 0.25rem 0.7rem;
+            border-radius: 999px;
+            border: 1px solid #0f4422;
+            font-size: 0.7rem;
+            color: #b6ffc7;
+        }
+
+        .card-grid {
             display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.2rem;
         }
 
-        @media (max-width: 1024px) {
-            .program-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
+        .card {
+            padding: 1.3rem 1.4rem;
+            border-radius: 18px;
+            background: radial-gradient(circle at 0 0, rgba(0, 177, 64, 0.12), #020402);
+            border: 1px solid #0c3f1a;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
         }
 
-        @media (max-width: 640px) {
-            .program-grid {
+        .card h3 {
+            margin-top: 0;
+            font-size: 1.1rem;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #dedede;
+        }
+
+        .card small {
+            display: block;
+            margin-top: 0.7rem;
+            font-size: 0.78rem;
+            color: #a8c9b0;
+        }
+
+        @media (max-width: 900px) {
+            .card-grid {
                 grid-template-columns: 1fr;
             }
-        }
-
-        .program-card {
-            background: var(--card-bg);
-            border-radius: 14px;
-            padding: 1.2rem 1.1rem;
-            border: 1px solid #113d21;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .program-tag {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            color: #9ef3b0;
-            margin-bottom: 0.35rem;
-        }
-
-        .program-title {
-            font-weight: 600;
-            margin-bottom: 0.4rem;
-        }
-
-        .program-body {
-            font-size: 0.88rem;
-            color: #d0d0d0;
-        }
-
-        .program-meta {
-            margin-top: 0.8rem;
-            font-size: 0.75rem;
-            color: #a9a9a9;
         }
 
         /* IMPACT SECTION */
-        .impact-layout {
+
+        .impact-grid {
             display: grid;
-            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
             gap: 1.8rem;
-            align-items: start;
         }
 
-        @media (max-width: 950px) {
-            .impact-layout {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .impact-cards {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 1rem;
-        }
-
-        @media (max-width: 640px) {
-            .impact-cards {
-                grid-template-columns: 1fr;
-            }
+        .impact-story {
+            font-size: 0.95rem;
+            color: #e3f1e7;
         }
 
         .impact-card {
-            background: radial-gradient(circle at 0 0, rgba(0, 177, 64, 0.18), #050505);
-            border-radius: 14px;
-            padding: 1.1rem 1.1rem 1rem;
-            border: 1px solid #134224;
-            font-size: 0.88rem;
+            border-radius: 18px;
+            padding: 1.3rem 1.4rem;
+            background: radial-gradient(circle at 0 0, rgba(0, 177, 64, 0.1), #040404);
+            border: 1px solid #0d3b19;
         }
 
-        .impact-name {
-            font-weight: 600;
-            margin-bottom: 0.3rem;
+        .impact-card h3 {
+            margin-top: 0;
         }
 
-        .impact-tagline {
-            font-size: 0.78rem;
-            color: #9ef3b0;
-            margin-bottom: 0.35rem;
+        .impact-metric {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-top: 0.3rem;
         }
 
-        .impact-quote {
-            font-size: 0.86rem;
-            color: #e4e4e4;
+        .impact-caption {
+            font-size: 0.82rem;
+            color: #bcd9c5;
         }
 
-        .impact-summary {
-            font-size: 0.9rem;
-            color: #d7d7d7;
-            line-height: 1.7;
-        }
-
-        .impact-list {
-            margin-top: 1rem;
-            padding-left: 1.1rem;
-            font-size: 0.88rem;
-            color: #d0ffd7;
-        }
-
-        .impact-list li {
-            margin-bottom: 0.35rem;
+        @media (max-width: 900px) {
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* DONATION SECTION */
-        .donation-section {
-            background: radial-gradient(circle at top, #062811, #020202 55%);
-            border-top: 1px solid #093b19;
-            border-bottom: 1px solid #093b19;
-        }
 
         .donation-layout {
             display: grid;
-            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-            gap: 1.8rem;
-            align-items: center;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 1.9rem;
+            align-items: stretch;
         }
 
-        @media (max-width: 960px) {
+        .donation-text p {
+            font-size: 0.95rem;
+            color: #e6f1ea;
+        }
+
+        .donation-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0;
+            display: grid;
+            gap: 0.4rem;
+        }
+
+        .donation-list li {
+            font-size: 0.9rem;
+            color: #cfe7d8;
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-start;
+        }
+
+        .donation-list li::before {
+            content: "●";
+            font-size: 0.5rem;
+            margin-top: 0.35rem;
+            color: #b6ffc7;
+        }
+
+        .donation-panel {
+            background: radial-gradient(circle at 0 0, rgba(0, 177, 64, 0.25), #060606);
+            border-radius: 20px;
+            padding: 1.5rem 1.6rem;
+            border: 1px solid #0f4a21;
+            box-shadow: 0 22px 45px rgba(0, 0, 0, 0.85);
+        }
+
+        .donation-panel h3 {
+            margin: 0 0 0.5rem;
+            font-size: 1.05rem;
+        }
+
+        .donation-panel p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #d4e8de;
+        }
+
+        .frequency-toggle {
+            margin: 1.1rem 0 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #d9f2e3;
+        }
+
+        .toggle {
+            width: 50px;
+            height: 24px;
+            border-radius: 999px;
+            background: #062512;
+            border: 1px solid #15522a;
+            display: flex;
+            align-items: center;
+            padding: 0 3px;
+            cursor: pointer;
+        }
+
+        .toggle-knob {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f4d03f, #00b140);
+            box-shadow: 0 0 10px rgba(0, 177, 64, 0.8);
+            transition: transform 0.2s ease-out;
+        }
+
+        .amount-row {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.6rem;
+            margin-top: 1rem;
+        }
+
+        .amount-option {
+            border-radius: 12px;
+            border: 1px solid #1a5f33;
+            background: #020503;
+            padding: 0.6rem 0.5rem;
+            font-size: 0.9rem;
+            text-align: center;
+            cursor: pointer;
+            color: #e6f7ed;
+        }
+
+        .amount-option.highlight {
+            background: radial-gradient(circle at 0 0, rgba(0, 177, 64, 0.25), #021006);
+            border-color: #3ddf78;
+        }
+
+        .custom-input {
+            margin-top: 0.9rem;
+        }
+
+        .custom-input label {
+            font-size: 0.8rem;
+            color: #c7e4d2;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .custom-input input {
+            width: 100%;
+            padding: 0.6rem 0.7rem;
+            border-radius: 10px;
+            border: 1px solid #144525;
+            background: #020403;
+            color: #e8f7ee;
+        }
+
+        .secure-note {
+            font-size: 0.78rem;
+            color: #b1d3c1;
+            margin-top: 0.8rem;
+        }
+
+        .donate-btn {
+            margin-top: 1.1rem;
+            width: 100%;
+            border-radius: 999px;
+            padding: 0.7rem 1.2rem;
+            border: none;
+            background: linear-gradient(90deg, #f4d03f, #00b140);
+            color: #061507;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
+        }
+
+        @media (max-width: 900px) {
             .donation-layout {
                 grid-template-columns: 1fr;
             }
         }
 
-        .donation-panel {
-            background: rgba(0, 0, 0, 0.75);
-            border-radius: 18px;
-            padding: 1.4rem 1.5rem 1.6rem;
-            border: 1px solid #0d3c1b;
-            box-shadow: 0 24px 50px rgba(0, 0, 0, 0.85);
-        }
+        /* VOLUNTEER SECTION */
 
-        .toggle-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .toggle-label {
-            font-size: 0.85rem;
-        }
-
-        .toggle {
-            width: 56px;
-            height: 28px;
-            border-radius: 999px;
-            background: #04130a;
-            border: 1px solid #144723;
-            padding: 3px;
-            display: flex;
-            align-items: center;
-        }
-
-        .toggle-knob {
-            width: 22px;
-            height: 22px;
-            border-radius: 999px;
-            background: linear-gradient(135deg, var(--gold), var(--green));
-        }
-
-        .amount-row {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 0.7rem;
-            margin-bottom: 0.8rem;
-        }
-
-        @media (max-width: 640px) {
-            .amount-row {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        .amount-option {
-            padding: 0.7rem 0.6rem;
-            border-radius: 10px;
-            border: 1px solid #1b4f2a;
-            font-size: 0.9rem;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .amount-option.highlight {
-            background: radial-gradient(circle at 20% 0, rgba(244, 208, 63, 0.25), #05220e);
-            border-color: var(--gold);
-        }
-
-        .custom-input {
-            margin-top: 0.6rem;
-            display: flex;
-            gap: 0.55rem;
-        }
-
-        .custom-input span {
-            padding: 0.6rem 0.7rem;
-            border-radius: 10px;
-            border: 1px solid #1b4f2a;
-            background: #020502;
-            font-size: 0.9rem;
-        }
-
-        .custom-input input {
-            flex: 1;
-            padding: 0.55rem 0.8rem;
-            border-radius: 10px;
-            border: 1px solid #1b4f2a;
-            background: #020502;
-            color: #ffffff;
-            font-size: 0.9rem;
-        }
-
-        .donate-btn {
-            margin-top: 1rem;
-            width: 100%;
-            border-radius: 999px;
-            border: none;
-            padding: 0.9rem 1.2rem;
-            font-size: 0.98rem;
-            font-weight: 700;
-            cursor: pointer;
-            background: linear-gradient(135deg, var(--gold), var(--green));
-            color: #000;
-            box-shadow: 0 0 22px rgba(0, 177, 64, 0.7);
-        }
-
-        .ways-list {
-            font-size: 0.86rem;
-            color: #dcdcdc;
-            margin-top: 1rem;
-        }
-
-        .ways-list li {
-            margin-bottom: 0.3rem;
-        }
-
-        /* VOLUNTEER & NEWSLETTER */
         .two-col {
             display: grid;
-            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 1.8rem;
         }
 
         @media (max-width: 900px) {
@@ -652,12 +580,11 @@
             }
         }
 
-        .card {
-            background: var(--card-bg);
+        .card-quiet {
+            background: radial-gradient(circle at 0 0, rgba(0, 177, 64, 0.1), #050505);
             border-radius: 16px;
-            padding: 1.3rem 1.4rem;
-            border: 1px solid #153c23;
-            font-size: 0.9rem;
+            padding: 1.4rem 1.4rem;
+            border: 1px solid #0f3f1d;
         }
 
         .field-row {
@@ -671,56 +598,68 @@
             flex: 1;
             padding: 0.65rem 0.8rem;
             border-radius: 10px;
-            border: 1px solid #1b4f2a;
-            background: #020502;
-            color: #ffffff;
-            font-size: 0.88rem;
+            border: 1px solid #164529;
+            background: #010302;
+            color: #e6f6ee;
         }
 
-        .field-row button {
+        .field-row select {
+            cursor: pointer;
+        }
+
+        .field-row input::placeholder {
+            color: #9bb8a7;
+        }
+
+        .btn-sm {
+            margin-top: 0.8rem;
+            padding: 0.55rem 1.3rem;
             border-radius: 999px;
             border: none;
-            padding: 0.7rem 1.4rem;
-            font-size: 0.9rem;
+            background: linear-gradient(90deg, #f4d03f, #00b140);
+            color: #061507;
             font-weight: 600;
+            font-size: 0.85rem;
             cursor: pointer;
-            background: linear-gradient(135deg, var(--green), var(--green-dark));
-            color: #ffffff;
         }
 
         .newsletter-input {
             display: flex;
             gap: 0.6rem;
-            margin-top: 0.9rem;
+            margin-top: 1rem;
         }
 
         .newsletter-input input {
             flex: 1;
-            padding: 0.65rem 0.8rem;
+            padding: 0.6rem 0.7rem;
             border-radius: 999px;
-            border: 1px solid #1b4f2a;
-            background: #020502;
-            color: #ffffff;
-            font-size: 0.88rem;
+            border: 1px solid #154227;
+            background: #010302;
+            color: #e6f6ee;
         }
 
         .newsletter-input button {
             border-radius: 999px;
+            padding: 0.6rem 1.1rem;
             border: none;
-            padding: 0.7rem 1.3rem;
-            font-size: 0.9rem;
-            font-weight: 600;
+            background: #0f3f1d;
+            color: #e6f6ee;
+            font-size: 0.85rem;
             cursor: pointer;
-            background: linear-gradient(135deg, var(--gold), var(--green));
-            color: #000;
+        }
+
+        .newsletter-note {
+            margin-top: 0.7rem;
+            font-size: 0.8rem;
+            color: #b3d2c0;
         }
 
         /* FOOTER */
+
         footer {
             border-top: 1px solid #093b19;
-            padding: 1.5rem 1.5rem 1.8rem;
-            background: #010101;
-            font-size: 0.8rem;
+            padding: 1.6rem 1.5rem 2rem;
+            background: #020402;
         }
 
         .footer-inner {
@@ -728,25 +667,33 @@
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
+            gap: 1.5rem;
             flex-wrap: wrap;
-            gap: 1rem;
+            align-items: center;
             color: #c4c4c4;
+            font-size: 0.85rem;
         }
 
         .footer-links {
             display: flex;
-            gap: 1rem;
             flex-wrap: wrap;
+            gap: 0.9rem;
         }
 
         .footer-links a {
-            color: #a6ffba;
+            color: #b6ffc7;
             text-decoration: none;
+            font-size: 0.82rem;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-   <header>
+
+<header>
     <div class="nav">
         <div class="brand">
             <div class="brand-mark">🔥</div>
@@ -759,20 +706,15 @@
         <button class="nav-toggle">Menu</button>
 
         <nav>
-            <!-- Left side links -->
-            <a href="index.html">Home</a>
+            <a href="#top">Home</a>
             <a href="#programs">Programs</a>
             <a href="#impact">Impact</a>
             <a href="#donate">Donate</a>
             <a href="#volunteer">Volunteer</a>
-
-            <!-- Right side links to separate pages -->
             <a href="about.html">About</a>
             <a href="donation-use.html">How donations are used</a>
             <a href="privacy.html">Privacy</a>
             <a href="terms.html">Terms</a>
-
-            <!-- Call-to-action button -->
             <button
                 class="nav-cta"
                 onclick="document.getElementById('donate').scrollIntoView({ behavior: 'smooth' })"
@@ -783,23 +725,19 @@
     </div>
 </header>
 
-
-    <main>
-        <!-- HERO -->
-      <!-- HERO -->
-<section class="hero" id="top" style="display: block; max-width: 1200px; margin: 0 auto; padding: 3.5rem 1.5rem 3rem;">
+<!-- HERO -->
+<section class="hero" id="top">
     <div>
         <div class="hero-kicker">Committed to uplifting vulnerable lives</div>
         <h1>
             Igniting opportunity through
-            <span>education, empowerment & giving</span>.
+            <span>education, empowerment &amp; giving</span>.
         </h1>
         <p class="hero-sub">
             Light a Torch Foundation partners with communities in Jamaica to support
             vulnerable youth, single-parent households, and at-risk groups through scholarships,
             skills training, mentorship, and targeted donations.
         </p>
-
         <div class="hero-actions">
             <button class="btn-primary" onclick="document.getElementById('donate').scrollIntoView({behavior: 'smooth'})">
                 Light the Torch – Donate
@@ -808,17 +746,16 @@
                 Explore our programs
             </button>
         </div>
-
         <div class="hero-footnote">Every contribution helps us keep a light burning for someone in need.</div>
 
-        <div class="hero-stats" style="max-width: 100%; grid-template-columns: repeat(4, 1fr);">
+        <div class="hero-stats">
             <div class="stat">
                 <div class="stat-number">250+</div>
-                <div class="stat-label">Students reached through tutoring & school support</div>
+                <div class="stat-label">Students reached through tutoring &amp; school support</div>
             </div>
             <div class="stat">
                 <div class="stat-number">120</div>
-                <div class="stat-label">Families engaged in empowerment & skills workshops</div>
+                <div class="stat-label">Families engaged in empowerment &amp; skills workshops</div>
             </div>
             <div class="stat">
                 <div class="stat-number">4</div>
@@ -832,254 +769,221 @@
     </div>
 </section>
 
+<!-- PROGRAMS -->
+<section class="section" id="programs">
+    <div class="section-header">
+        <div>
+            <div class="section-kicker">Programs</div>
+            <h2 class="section-title">How we improve lives on the ground</h2>
+        </div>
+        <p class="section-description">
+            Our focus is simple: remove barriers that prevent vulnerable groups from accessing education,
+            skills, and opportunities. Your support fuels programs that are practical, community-led, and
+            designed for long-term change.
+        </p>
+    </div>
 
-        <!-- PROGRAMS -->
-        <section class="section" id="programs">
-            <div class="section-header">
-                <div>
-                    <div class="section-kicker">Programs</div>
-                    <h2 class="section-title">How we improve lives on the ground</h2>
+    <div class="pill-row">
+        <div class="pill">Scholarships</div>
+        <div class="pill">After-school tutoring</div>
+        <div class="pill">Skills &amp; vocational training</div>
+        <div class="pill">Youth mentorship</div>
+        <div class="pill">Emergency support</div>
+    </div>
+
+    <div class="card-grid" style="margin-top: 1.6rem;">
+        <div class="card">
+            <h3>Education &amp; School Support</h3>
+            <p>
+                We help students stay in school by supporting with exam fees, books, transportation, uniforms,
+                and tutoring for key subjects.
+            </p>
+            <small>Example: Your donation can help a student sit CSEC exams they otherwise could not afford.</small>
+        </div>
+        <div class="card">
+            <h3>Skills &amp; Empowerment</h3>
+            <p>
+                Young adults and parents access training in areas like digital skills, small business management,
+                and vocational trades to improve their income.
+            </p>
+            <small>Example: A short skills course can be the first step away from unemployment or dependency.</small>
+        </div>
+        <div class="card">
+            <h3>Emergency &amp; Family Support</h3>
+            <p>
+                For families facing crisis, we step in with food baskets, hygiene kits, school supplies, and
+                targeted help identified through community partners.
+            </p>
+            <small>Example: A single donation can help stabilize a household long enough for them to rebuild.</small>
+        </div>
+    </div>
+</section>
+
+<!-- IMPACT -->
+<section class="section" id="impact">
+    <div class="section-header">
+        <div>
+            <div class="section-kicker">Impact</div>
+            <h2 class="section-title">Your giving lights real lives</h2>
+        </div>
+        <p class="section-description">
+            Behind every number is a face, a family, and a story of renewed hope. We work closely with local
+            partners so support goes where it is needed most.
+        </p>
+    </div>
+
+    <div class="impact-grid">
+        <div class="impact-story">
+            <p>
+                When you give to Light a Torch Foundation, you’re not just giving money—you’re opening doors.
+                A student is able to sit an exam, a young person learns a skill that leads to employment,
+                and a family facing hardship feels seen and supported.
+            </p>
+            <p>
+                Our commitment is to remain transparent, community-centered, and focused on long-term change.
+                We regularly update supporters on the projects they’ve helped make possible.
+            </p>
+        </div>
+        <div class="impact-card">
+            <h3>Snapshot of current reach</h3>
+            <div class="impact-metric">250+ students</div>
+            <div class="impact-caption">Supported with books, exam fees and tutoring</div>
+
+            <div class="impact-metric" style="margin-top: 0.9rem;">120 families</div>
+            <div class="impact-caption">Connected to workshops, counselling and skills programs</div>
+
+            <div class="impact-metric" style="margin-top: 0.9rem;">4 community hubs</div>
+            <div class="impact-caption">Partner spaces serving vulnerable groups across Jamaica</div>
+        </div>
+    </div>
+</section>
+
+<!-- DONATE -->
+<section class="section" id="donate">
+    <div class="section-header">
+        <div>
+            <div class="section-kicker">Donate</div>
+            <h2 class="section-title">Fuel education, opportunity &amp; hope</h2>
+        </div>
+        <p class="section-description">
+            Whether you give once or monthly, your support directly strengthens programs that uplift vulnerable
+            people across Jamaica.
+        </p>
+    </div>
+
+    <div class="donation-layout donation">
+        <div class="donation-text">
+            <p>
+                Your donation helps us:
+            </p>
+            <ul class="donation-list">
+                <li>Fund scholarships and exam fees for students in need.</li>
+                <li>Support skills training and empowerment workshops.</li>
+                <li>Provide care packages and emergency support to families in crisis.</li>
+                <li>Strengthen community hubs that are safe spaces for learning and growth.</li>
+            </ul>
+            <p style="margin-top: 1rem;">
+                We are committed to keeping administrative costs low so that the majority of funds go directly
+                into programs. Transparent reporting and impact updates help you see where your support goes.
+            </p>
+        </div>
+
+        <div class="donation-panel" aria-label="Donation options">
+            <h3>Light a torch with your gift</h3>
+            <p>Choose your amount and preference. This is a demonstration panel; in a live site it would connect to a secure payment provider.</p>
+
+            <div class="frequency-toggle">
+                <span>One-time</span>
+                <div class="toggle" data-mode="once">
+                    <div class="toggle-knob" title="One-time donation selected"></div>
                 </div>
-                <p class="section-description">
-                    Our work focuses on practical, locally grounded initiatives that give vulnerable groups
-                    the tools, confidence, and support they need to move toward long-term stability and
-                    independence.
-                </p>
+                <span>Monthly</span>
             </div>
 
-            <div class="program-grid">
-                <article class="program-card">
-                    <div class="program-tag">Education</div>
-                    <h3 class="program-title">Scholarships & School Support</h3>
-                    <p class="program-body">
-                        We provide back-to-school grants, exam fees, transportation stipends, and school
-                        supplies for students from low-income households, so finances never block their
-                        potential.
-                    </p>
-                    <div class="program-meta">Focus: Primary & secondary students in Jamaica.</div>
-                </article>
-
-                <article class="program-card">
-                    <div class="program-tag">Empowerment</div>
-                    <h3 class="program-title">Skills Training & Microenterprise</h3>
-                    <p class="program-body">
-                        From digital literacy to small business management, our workshops equip youth and
-                        caregivers with practical skills to create sustainable income streams.
-                    </p>
-                    <div class="program-meta">Focus: Unemployed youth and single parents.</div>
-                </article>
-
-                <article class="program-card">
-                    <div class="program-tag">Youth</div>
-                    <h3 class="program-title">Mentorship & Safe Spaces</h3>
-                    <p class="program-body">
-                        We connect young people with positive role models, study groups, and safe
-                        community hubs where they can learn, ask questions, and build healthy friendships.
-                    </p>
-                    <div class="program-meta">Focus: At-risk teens and school-leavers.</div>
-                </article>
-
-                <article class="program-card">
-                    <div class="program-tag">Care & Relief</div>
-                    <h3 class="program-title">Care Packages & Emergency Support</h3>
-                    <p class="program-body">
-                        When families face a crisis—job loss, illness, or sudden hardship—we step in with
-                        food baskets, hygiene supplies, and short-term financial assistance.
-                    </p>
-                    <div class="program-meta">Focus: Vulnerable households in partner communities across the island.</div>
-                </article>
-            </div>
-        </section>
-
-        <!-- IMPACT & STORIES -->
-        <section class="section" id="impact">
-            <div class="section-header">
-                <div>
-                    <div class="section-kicker">Impact</div>
-                    <h2 class="section-title">Stories behind every donation</h2>
-                </div>
-                <p class="section-description">
-                    We measure our success not just in numbers, but in transformed lives—students who
-                    graduate, parents who find stable income, and young people who rediscover their worth.
-                </p>
+            <div class="amount-row">
+                <div class="amount-option">JMD 3,500</div>
+                <div class="amount-option">JMD 10,000</div>
+                <div class="amount-option">JMD 25,000</div>
             </div>
 
-            <div class="impact-layout">
-                <div>
-                    <p class="impact-summary">
-                        Light a Torch Foundation works hand in hand with schools, churches, and community
-                        leaders in Jamaica to identify those who are most at risk of being left behind.
-                        Our support goes beyond a single handout—we walk with families over time.
-                    </p>
-                    <ul class="impact-list">
-                        <li>Community-based identification of vulnerable households and youth.</li>
-                        <li>Regular follow-up visits and coaching with partner social workers.</li>
-                        <li>Monitoring of school attendance and academic progress for supported students.</li>
-                        <li>Feedback from participants to continually shape better programs.</li>
-                    </ul>
-                </div>
-
-                <div class="impact-cards">
-                    <article class="impact-card">
-                        <div class="impact-name">“I didn’t have to drop out.”</div>
-                        <div class="impact-tagline">Scholarship recipient · 16 years old</div>
-                        <p class="impact-quote">
-                            “My mother was out of work and we couldn’t pay exam fees. The Foundation covered
-                            them and helped with bus fare. Now I’m sitting all my subjects and planning for
-                            sixth form.”
-                        </p>
-                    </article>
-
-                    <article class="impact-card">
-                        <div class="impact-name">“Now I can earn on my own.”</div>
-                        <div class="impact-tagline">Skills training participant · Single mother</div>
-                        <p class="impact-quote">
-                            “The empowerment workshops taught me basic bookkeeping and how to market my
-                            products online. I’ve started a small business and can better support my children.”
-                        </p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- DONATE -->
-        <section class="section donation-section" id="donate">
-            <div class="section-header">
-                <div>
-                    <div class="section-kicker">Donate</div>
-                    <h2 class="section-title">Light a torch in someone’s life today</h2>
-                </div>
-                <p class="section-description">
-                    Your contribution—no matter the size—helps us keep programs running and expand our
-                    reach to even more vulnerable groups in Jamaica.
-                </p>
+            <div class="custom-input">
+                <label for="customAmount">Or enter a custom amount (JMD)</label>
+                <input type="number" min="500" id="customAmount" placeholder="e.g. 5000" />
             </div>
 
-            <div class="donation-layout">
-                <div class="donation-panel" aria-label="Donation options">
-                    <div class="toggle-row">
-                        <div class="toggle-label">
-                            Choose if you’d like to give a one-time gift or become a monthly partner.
-                        </div>
-                        <div class="toggle" aria-hidden="true">
-                            <div class="toggle-knob"></div>
-                        </div>
-                    </div>
+            <p class="secure-note">
+                Donations are processed securely. In a live version, this button would route you to a trusted payment gateway such as PayPal or a local bank transfer option.
+            </p>
 
-                    <div class="amount-row">
-                        <div class="amount-option highlight">JMD 3,500</div>
-                        <div class="amount-option">JMD 7,500</div>
-                        <div class="amount-option">JMD 15,000</div>
-                        <div class="amount-option">Custom</div>
-                    </div>
+            <button class="donate-btn">Continue to secure payment</button>
+        </div>
+    </div>
+</section>
 
-                    <div class="custom-input">
-                        <span>JMD</span>
-                        <input type="number" placeholder="Enter amount" min="500" />
-                    </div>
+<!-- VOLUNTEER / CONTACT -->
+<section class="section" id="volunteer">
+    <div class="section-header">
+        <div>
+            <div class="section-kicker">Get involved</div>
+            <h2 class="section-title">Volunteer, partner, or spread the word</h2>
+        </div>
+        <p class="section-description">
+            Beyond financial support, we welcome mentors, educators, community leaders, and partners who share our commitment to uplifting vulnerable lives.
+        </p>
+    </div>
 
-                    <button class="donate-btn">Continue to secure payment</button>
-
-                    <ul class="ways-list">
-                        <li>We accept local bank transfer, credit/debit cards, and PayPal.</li>
-                        <li>Tax-deductible receipts available upon request (where applicable).</li>
-                        <li>For corporate partnerships, email us to design a custom initiative.</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <p style="font-size: 0.95rem; color: #e5e5e5; line-height: 1.7;">
-                        When you give to Light a Torch Foundation, you’re not just responding to a moment—you’re
-                        investing in long-term change. We carefully steward each donation, prioritising
-                        transparency and real impact on the ground.
-                    </p>
-                    <ul class="impact-list" style="margin-top: 0.8rem;">
-                        <li>Quarterly summaries of how funds are used.</li>
-                        <li>Stories and updates from the very communities you support.</li>
-                        <li>Opportunities to visit programs or volunteer, where possible.</li>
-                    </ul>
-                </div>
+    <div class="two-col">
+        <div class="card-quiet">
+            <h3>Share your interest</h3>
+            <p>
+                Tell us how you’d like to get involved—whether through mentoring, skills training, school partnerships, or community outreach.
+            </p>
+            <div class="field-row">
+                <input type="text" id="volName" placeholder="Full name" />
+                <input type="email" id="volEmail" placeholder="Email" />
             </div>
-        </section>
-
-        <!-- VOLUNTEER & NEWSLETTER -->
-        <section class="section" id="volunteer">
-            <div class="section-header">
-                <div>
-                    <div class="section-kicker">Get Involved</div>
-                    <h2 class="section-title">Beyond donations: stand with us</h2>
-                </div>
-                <p class="section-description">
-                    Volunteers, mentors, and community partners are a crucial part of how we operate. If
-                    you’re in Jamaica or the wider Jamaica area, we’d love to hear from you.
-                </p>
+            <div class="field-row">
+                <select id="volArea">
+                    <option>Area of interest</option>
+                    <option>Mentorship / tutoring</option>
+                    <option>Skills training</option>
+                    <option>School or church partnership</option>
+                    <option>Community outreach</option>
+                </select>
             </div>
+            <button class="btn-sm">Submit interest</button>
+        </div>
 
-            <div class="two-col">
-                <div class="card">
-                    <h3 style="margin-top: 0;">Volunteer & Partnership Interest</h3>
-                    <p>
-                        Share a few details and our team will follow up with opportunities that match your
-                        skills and availability.
-                    </p>
-                    <div class="field-row">
-                        <input type="text" placeholder="Full name" />
-                        <input type="email" placeholder="Email address" />
-                    </div>
-                    <div class="field-row" style="margin-top: 0.7rem;">
-                        <select>
-                            <option>Area of interest</option>
-                            <option>Youth mentorship</option>
-                            <option>Homework program</option>
-                            <option>Skills training</option>
-                            <option>Admin & logistics</option>
-                            <option>Corporate partnership</option>
-                        </select>
-                        <button>Submit interest</button>
-                    </div>
-                    <p style="font-size: 0.8rem; color: #b8b8b8; margin-top: 0.7rem;">
-                        By submitting, you agree for us to contact you about opportunities with Light a
-                        Torch Foundation.
-                    </p>
-                </div>
-
-                <div class="card">
-                    <h3 style="margin-top: 0;">Stay connected</h3>
-                    <p>
-                        Get short updates on new programs, impact stories, and ways you can help us keep
-                        the torch burning.
-                    </p>
-                    <div class="newsletter-input">
-                        <input type="email" placeholder="Email address" />
-                        <button>Join list</button>
-                    </div>
-                    <p style="font-size: 0.8rem; color: #b8b8b8; margin-top: 0.7rem;">
-                        We respect your inbox and only send occasional updates.
-                    </p>
-                </div>
+        <div class="card-quiet">
+            <h3>Stay in the loop</h3>
+            <p>
+                Get occasional updates on projects, impact stories, and ways to support. We respect your inbox—no spam.
+            </p>
+            <div class="newsletter-input">
+                <input type="email" id="newsletterEmail" placeholder="Email address" />
+                <button type="button">Join</button>
             </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-inner">
-            <div>
-                &copy; 2025 Light a Torch Foundation. All rights reserved.
-                <br />
-                Jamaica · Committed to improving lives through education, empowerment, and giving.
-            </div>
-            <div class="footer-links">
-                <a href="#top">Back to top</a>
-                <a href="#donate">Donate</a>
-                <a href="#volunteer">Contact &amp; volunteer</a>
-                <a href="about.html">About</a>
-                <a href="privacy.html">Privacy</a>
-                <a href="terms.html">Terms</a>
+            <div class="newsletter-note">
+                By subscribing, you agree to our <a href="privacy.html" style="color:#b6ffc7;">Privacy Policy</a>.
             </div>
         </div>
-    </footer>
+    </div>
+</section>
 
-  <script src="main.js"></script>
+<footer>
+    <div class="footer-inner">
+        <div>&copy; 2025 Light a Torch Foundation. All rights reserved.</div>
+        <div class="footer-links">
+            <a href="#top">Back to top</a>
+            <a href="#donate">Donate</a>
+            <a href="#volunteer">Contact &amp; volunteer</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+        </div>
+    </div>
+</footer>
 
+<script src="main.js"></script>
 </body>
 </html>
