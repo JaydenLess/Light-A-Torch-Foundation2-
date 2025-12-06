@@ -33,6 +33,13 @@
             display: flex; align-items: center; justify-content: center;
             background: radial-gradient(circle at 30% 0, #1a8c3b, #000);
         }
+        .brand-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 999px; /* follows the circle shape */
+}
+
         .brand-text { font-size: 0.8rem; line-height: 1.2; }
         main {
             max-width: 900px;
@@ -247,13 +254,19 @@
     </style>
 
     <div class="navbar">
-        <div class="navbar-brand">
-            <div class="brand-icon">🔥</div>
-            <div class="brand-text">
-                <strong>LIGHT A TORCH</strong>
-                <span>Foundation · Jamaica</span>
-            </div>
-        </div>
+      <div class="brand">
+    <div class="brand-mark">
+        <img
+            src="fe6210ff-85c6-4340-9f6c-4ccddfbebe33.png"
+            alt="Light a Torch Foundation logo"
+            class="brand-logo"
+        />
+    </div>
+    <div class="brand-text">
+        <span>LIGHT A TORCH</span>
+        <span>Foundation · Jamaica</span>
+    </div>
+</div>
 
         <button class="nav-toggle" onclick="toggleMenu()">Menu</button>
 
