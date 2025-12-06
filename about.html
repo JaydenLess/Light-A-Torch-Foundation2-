@@ -10,6 +10,8 @@
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             background: radial-gradient(circle at top, #051b0b 0, #000 45%, #000 100%);
             color: #f5f5f5;
+                overflow-x: hidden;
+
         }
         a { color: #b6ffc7; text-decoration: none; }
         header {
@@ -83,13 +85,13 @@
 
 <header>
     <style>
-        /* NAVBAR STYLING */
+        /* NAVBAR STYLING (shared across all pages) */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 1rem 1.5rem;
-            background: rgba(0, 0, 0, 0.65);
+            background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(6px);
             border-bottom: 1px solid #0a3a18;
             position: sticky;
@@ -97,7 +99,6 @@
             z-index: 50;
         }
 
-        /* Brand section */
         .navbar-brand {
             display: flex;
             align-items: center;
@@ -129,7 +130,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Navigation links container */
         .nav-links {
             display: flex;
             align-items: center;
@@ -154,6 +154,18 @@
             padding-bottom: 3px;
         }
 
+        /* Donate button in nav (desktop) */
+        .nav-cta {
+            padding: 0.45rem 1.1rem;
+            border-radius: 999px;
+            border: none;
+            background: linear-gradient(90deg, #f4d03f, #1ddf55);
+            color: #07210e;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
         /* Legal dropdown */
         .nav-item {
             position: relative;
@@ -169,7 +181,7 @@
             user-select: none;
         }
 
-        .legal-toggle span.arrow {
+        .legal-toggle .arrow {
             font-size: 0.7rem;
         }
 
@@ -198,15 +210,14 @@
             background: #0f2817;
         }
 
-        /* Show dropdown whenever .open is set (click-based) */
         .nav-item.legal.open .legal-menu {
             display: flex;
         }
 
-        /* Mobile menu toggle */
+        /* Mobile menu toggle button */
         .nav-toggle {
             display: none;
-            padding: 0.5rem 0.9rem;
+            padding: 0.45rem 0.9rem;
             font-size: 0.9rem;
             border-radius: 6px;
             border: 1px solid #175f29;
@@ -222,27 +233,29 @@
             }
 
             .nav-links {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
                 position: absolute;
-                top: 65px;
-                right: 0;
+                top: 64px;
+                right: 1rem;
                 background: #000;
-                padding: 1.2rem 1.4rem;
+                padding: 1rem 1.4rem;
                 border-left: 1px solid #0e3c17;
                 border-bottom: 1px solid #0e3c17;
+                border-radius: 0 0 0 12px;
                 width: 75%;
                 max-width: 320px;
                 display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
             }
 
             .nav-links.open {
-                display: flex;
+                display: flex; /* ✅ vertical dropdown */
             }
 
-            .nav-item.legal {
+            .nav-cta {
                 width: 100%;
+                text-align: left;
             }
 
             .legal-menu {
@@ -250,7 +263,7 @@
                 border: none;
                 box-shadow: none;
                 padding-left: 0.5rem;
-                margin-top: 0.4rem;
+                margin-top: 0.3rem;
             }
         }
     </style>
@@ -267,7 +280,14 @@
         <button class="nav-toggle" onclick="toggleMenu()">Menu</button>
 
         <nav class="nav-links" id="navMenu">
+            <!-- Home & sections (always go via index.html so they work from any page) -->
             <a href="index.html">Home</a>
+            <a href="index.html#programs">Programs</a>
+            <a href="index.html#impact">Impact</a>
+            <a href="index.html#donate">Donate</a>
+            <a href="index.html#volunteer">Volunteer</a>
+
+            <!-- Other pages -->
             <a href="about.html">About</a>
             <a href="donation-use.html">How donations are used</a>
 
@@ -282,6 +302,11 @@
                     <a href="terms.html">Terms</a>
                 </div>
             </div>
+
+            <!-- Donate button -->
+            <button class="nav-cta" onclick="window.location.href='index.html#donate'">
+                Donate Now
+            </button>
         </nav>
     </div>
 
@@ -297,31 +322,37 @@
             legalItem.classList.toggle('open');
         }
 
-        // Close menus when clicking outside (desktop + mobile)
-        document.addEventListener('click', function (e) {
+        // Close legal dropdown when clicking outside
+        document.addEventListener('click', function(e) {
             const legalItem = document.getElementById('legalItem');
             if (legalItem && !legalItem.contains(e.target)) {
                 legalItem.classList.remove('open');
             }
         });
 
-        // Highlight current page link
+        // Highlight current page link (based on file, not hash)
         document.addEventListener("DOMContentLoaded", function () {
             const links = document.querySelectorAll(".nav-links a");
-            const currentPage = window.location.pathname.split("/").pop();
+            let current = window.location.pathname.split("/").pop();
+            if (!current) current = "index.html";  // for root
 
             links.forEach(link => {
                 const href = link.getAttribute("href");
-                if (href === currentPage) {
+                const page = href.split("#")[0];   // ignore #programs, etc.
+
+                if (page === current) {
                     link.classList.add("current-page");
                 }
-                if ((currentPage === "" || currentPage === "index.html") && href === "index.html") {
+
+                // make Home highlight on bare index
+                if (current === "index.html" && (href === "index.html" || href === "./")) {
                     link.classList.add("current-page");
                 }
             });
         });
     </script>
 </header>
+
 
 
 
