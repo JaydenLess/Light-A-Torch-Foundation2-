@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms & Disclaimer · Light a Torch Foundation</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #051b0b 0, #000 45%, #000 100%);
+            color: #f5f5f5;
+        }
+        a { color: #b6ffc7; text-decoration: none; }
+        header {
+            background: linear-gradient(90deg, #000, #003311);
+            border-bottom: 1px solid #003c13;
+            padding: 0.75rem 1.5rem;
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .brand { display: flex; align-items: center; gap: 0.5rem; }
+        .brand-mark {
+            width: 32px; height: 32px; border-radius: 50%;
+            border: 2px solid #f4d03f;
+            display: flex; align-items: center; justify-content: center;
+            background: radial-gradient(circle at 30% 0, #1a8c3b, #000);
+        }
+        .brand-text { font-size: 0.8rem; line-height: 1.2; }
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 3rem;
+        }
+        h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+        h2 { font-size: 1.3rem; margin-top: 2rem; }
+        p, li { line-height: 1.7; font-size: 0.96rem; color: #e0e0e0; }
+        ul { padding-left: 1.1rem; }
+        footer {
+            border-top: 1px solid #093b19;
+            padding: 1.3rem 1.5rem;
+            background: #010101;
+            font-size: 0.8rem;
+        }
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            color: #c4c4c4;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <style>
+        /* NAVBAR STYLING */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid #0a3a18;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        /* Brand section */
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .brand-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 2px solid #f4d03f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 30% 0, #1a8c3b, #000);
+            font-size: 1.2rem;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            font-size: 0.85rem;
+            line-height: 1.15;
+            color: #d8ffd7;
+        }
+
+        .brand-text strong {
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Navigation links container */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: #b6ffc7;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            color: #f4d03f;
+        }
+
+        /* Highlight for current page */
+        .nav-links a.current-page {
+            color: #f4d03f !important;
+            border-bottom: 2px solid #f4d03f;
+            padding-bottom: 3px;
+        }
+
+        /* Legal dropdown */
+        .nav-item {
+            position: relative;
+        }
+
+        .legal-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            cursor: pointer;
+            color: #b6ffc7;
+            font-size: 0.95rem;
+            user-select: none;
+        }
+
+        .legal-toggle span.arrow {
+            font-size: 0.7rem;
+        }
+
+        .legal-menu {
+            position: absolute;
+            top: 2.1rem;
+            right: 0;
+            background: #020402;
+            border: 1px solid #0f3f1b;
+            border-radius: 8px;
+            padding: 0.4rem 0;
+            min-width: 190px;
+            display: none;
+            flex-direction: column;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+            z-index: 60;
+        }
+
+        .legal-menu a {
+            padding: 0.45rem 0.9rem;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .legal-menu a:hover {
+            background: #0f2817;
+        }
+
+        /* Show dropdown whenever .open is set (click-based) */
+        .nav-item.legal.open .legal-menu {
+            display: flex;
+        }
+
+        /* Mobile menu toggle */
+        .nav-toggle {
+            display: none;
+            padding: 0.5rem 0.9rem;
+            font-size: 0.9rem;
+            border-radius: 6px;
+            border: 1px solid #175f29;
+            background: #0d2916;
+            color: #b6ffc7;
+            cursor: pointer;
+        }
+
+        /* MOBILE LAYOUT */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                position: absolute;
+                top: 65px;
+                right: 0;
+                background: #000;
+                padding: 1.2rem 1.4rem;
+                border-left: 1px solid #0e3c17;
+                border-bottom: 1px solid #0e3c17;
+                width: 75%;
+                max-width: 320px;
+                display: none;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-item.legal {
+                width: 100%;
+            }
+
+            .legal-menu {
+                position: static;
+                border: none;
+                box-shadow: none;
+                padding-left: 0.5rem;
+                margin-top: 0.4rem;
+            }
+        }
+    </style>
+
+    <div class="navbar">
+        <div class="navbar-brand">
+            <div class="brand-icon">🔥</div>
+            <div class="brand-text">
+                <strong>LIGHT A TORCH</strong>
+                <span>Foundation · Jamaica</span>
+            </div>
+        </div>
+
+        <button class="nav-toggle" onclick="toggleMenu()">Menu</button>
+
+        <nav class="nav-links" id="navMenu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="donation-use.html">How donations are used</a>
+
+            <!-- Legal dropdown -->
+            <div class="nav-item legal" id="legalItem">
+                <div class="legal-toggle" onclick="toggleLegalDropdown(event)">
+                    <span>Legal</span>
+                    <span class="arrow">▾</span>
+                </div>
+                <div class="legal-menu">
+                    <a href="privacy.html">Privacy</a>
+                    <a href="terms.html">Terms</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('navMenu');
+            nav.classList.toggle('open');
+        }
+
+        function toggleLegalDropdown(event) {
+            event.stopPropagation();
+            const legalItem = document.getElementById('legalItem');
+            legalItem.classList.toggle('open');
+        }
+
+        // Close menus when clicking outside (desktop + mobile)
+        document.addEventListener('click', function (e) {
+            const legalItem = document.getElementById('legalItem');
+            if (legalItem && !legalItem.contains(e.target)) {
+                legalItem.classList.remove('open');
+            }
+        });
+
+        // Highlight current page link
+        document.addEventListener("DOMContentLoaded", function () {
+            const links = document.querySelectorAll(".nav-links a");
+            const currentPage = window.location.pathname.split("/").pop();
+
+            links.forEach(link => {
+                const href = link.getAttribute("href");
+                if (href === currentPage) {
+                    link.classList.add("current-page");
+                }
+                if ((currentPage === "" || currentPage === "index.html") && href === "index.html") {
+                    link.classList.add("current-page");
+                }
+            });
+        });
+    </script>
+</header>
+
+
+
+<main>
+    <h1>Terms & Disclaimer</h1>
+
+    <p>
+        By using this website or making a donation, you agree to the following terms and conditions.
+        These terms ensure transparency, accountability, and proper use of our services.
+    </p>
+
+    <h2>1. Use of Donations</h2>
+    <p>
+        All donations are voluntary and non-refundable. Funds may be allocated across community
+        programs based on need, operational requirements, and strategic planning.
+    </p>
+
+    <h2>2. Payment Processing</h2>
+    <p>
+        Online donations are processed securely through third-party providers such as PayPal or
+        Donorbox. We do not store or have access to your credit/debit card information.
+    </p>
+
+    <h2>3. Website Content</h2>
+    <p>
+        All content on this website is provided for general information purposes. While we strive for
+        accuracy, we cannot guarantee that all information is free from error or updated in real time.
+    </p>
+
+    <h2>4. External Links</h2>
+    <p>
+        This website may contain links to external sites. We are not responsible for the content,
+        policies, or practices of any third-party website.
+    </p>
+
+    <h2>5. Contact</h2>
+    <p>
+        For questions related to these terms, please contact:<br>
+        <strong>support@lightatorchfoundation.org</strong>
+    </p>
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <div>&copy; 2025 Light a Torch Foundation. All rights reserved.</div>
+        <div>
+            <a href="about.html">About</a> ·
+            <a href="privacy.html">Privacy</a> ·
+            <a href="terms.html">Terms</a>
+        </div>
+    </div>
+</footer>
+<script src="main.js"></script>
+
+</body>
+</html>
